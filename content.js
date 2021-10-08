@@ -1,3 +1,32 @@
+/**
+ * Making use of the distance function.js and the cities.json data as well as the osu.json one.
+ */
+
+const dist = require("./distance");
+const cities = require("./cities.json")
+const origin = require("./osu.json");
+
+/**
+ * The parameters are: lat1, lon1, lat2, lon2, unit (M:miles, K:km, N:nautical miles)
+ * I will assume point 1 is Corvallis and point 2 is the other city that I will be using to calculate the distance from.
+ * Example calculations between osu and cities:
+ * Will use parseFloat() function to change the strings from the json objects to floats.
+ */
+
+//  1
+const latOsu = origin['lat'];
+const lngOsu = origin['lng'];
+
+// 2
+const latSeattle = cities[0]['lat'];
+const lngSeattle = cities[0]['lng'];
+
+const distance_to_seattle = dist.distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
+
+console.log(distance_to_seattle);
+
+
+
 function generate_table(){
 
     // Grabs the body tag from the html page to add a table to it

@@ -48,3 +48,5 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 	}
 }
 
+// I need to export the function
+module.exports = {distance};
