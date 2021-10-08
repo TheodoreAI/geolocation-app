@@ -1,6 +1,8 @@
 
+# Part I:
+# Geolocation-app made for OSU
 
-# Geolocation-app
+The following intructions for part I are from OSU.
 
 There are two exercises we would like you to complete and submit as part of your application process.
 
@@ -49,7 +51,9 @@ Below are the steps required to submit the sample project. GitHub Pages will hos
 
 
 
-# My application:
+-----------------------------------------------------------------------------------
+# Part II:
+# My application part:
 
 
 1. Building the interface with JS, HTML, and CSS
