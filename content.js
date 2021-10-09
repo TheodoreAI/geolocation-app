@@ -13,21 +13,22 @@ const origin = require("./osu.json");
  * Will use parseFloat() function to change the strings from the json objects to floats.
  */
 
-//  1
-const latOsu = origin['lat'];
-const lngOsu = origin['lng'];
-
-// 2
-const latSeattle = cities[0]['lat'];
-const lngSeattle = cities[0]['lng'];
-
-const distance_to_seattle = dist.distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
 
 console.log(distance_to_seattle);
 
 
 
 function generate_table(){
+    //  1
+    const latOsu = origin['lat'];
+    const lngOsu = origin['lng'];
+
+    // 2
+    const latSeattle = cities[0]['lat'];
+    const lngSeattle = cities[0]['lng'];
+
+    const distance_to_seattle = dist.distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
+
 
     // Grabs the body tag from the html page to add a table to it
     var body = document.getElementsByTagName("body")[0];
@@ -45,7 +46,7 @@ function generate_table(){
         for (let j = 0; j < 3; j++){
             // make a table data and its text content and add it to the table row.
             var cell = document.createElement("td");
-            var cellText = document.createTextNode("Cell in row "+ i +", column" +j);
+            var cellText = document.createTextNode("Cell in row "+ distance_to_seattle +", column" +j);
             cell.appendChild(cellText);
             row.appendChild(cell);
         }
