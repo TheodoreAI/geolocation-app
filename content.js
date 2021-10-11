@@ -2,9 +2,9 @@
  * Making use of the distance function.js and the cities.json data as well as the osu.json one.
  */
 
-const dist = require("./distance.js");
-const cities = require("./cities.json")
-const origin = require("./osu.json");
+import { distance } from "./distance.js";
+import cities from "./cities.json";
+import origin from "./osu.json";
 
 /**
  * The parameters are: lat1, lon1, lat2, lon2, unit (M:miles, K:km, N:nautical miles)
@@ -23,7 +23,7 @@ function generate_table(){
     // 2
     const latSeattle = cities[0]['lat'];
     const lngSeattle = cities[0]['lng'];
-    const distance_to_seattle = dist.distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
+    const distance_to_seattle = distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
     console.log(distance_to_seattle);
 
 
