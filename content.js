@@ -14,20 +14,18 @@ const origin = require("./osu.json");
  */
 
 
-console.log(distance_to_seattle);
-
 
 
 function generate_table(){
-    //  1
+    // 1
     const latOsu = origin['lat'];
     const lngOsu = origin['lng'];
-
     // 2
     const latSeattle = cities[0]['lat'];
     const lngSeattle = cities[0]['lng'];
-
     const distance_to_seattle = dist.distance(latOsu, lngOsu, latSeattle, lngSeattle, "M");
+    console.log(distance_to_seattle);
+
 
 
     // Grabs the body tag from the html page to add a table to it
