@@ -2,7 +2,7 @@
  * Making use of the distance function.js and the cities.json data as well as the osu.json one.
  */
 
-const dist = require("./distance");
+const dist = require("./distance.js");
 const cities = require("./cities.json")
 const origin = require("./osu.json");
 
