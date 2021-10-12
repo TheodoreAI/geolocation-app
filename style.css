@@ -2,3 +2,22 @@
     font-weight: bold;
     font-style: italic;
 }
+
+/* The style of the table and its components. */
+
+.tblClass{
+    border-radius: 1px;
+    border: solid 3px black;
+    width: auto;
+}
+
+td, th {
+    border: 2px solid black;
+    text-align: center;
+    padding: 5px;
+}
+
+tr:nth-child(odd){
+    background-color: grey;
+}
+

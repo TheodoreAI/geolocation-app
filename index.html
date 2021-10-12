@@ -8,18 +8,32 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="content.js"></script>
-        <script src="distance.js" async defer></script>
-
+              
+        <script src="./distance.js"></script>
+ 
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1 class="title">Geolocation Application:</h1>
-
-        <input type="button" value="Generate a table" onclick="generate_table()">
+        <h1 class="title">Geolocation Module:</h1>
+        <br>
         
-      
+        <table class="tblClass">
+            <tbody>
+                <tr>
+                    <th>Name:</th>
+                    <th>Latitude:</th>
+                    <th>Longitude:</th>
+                    <th>Distance:</th>
+                </tr>
+                <tr>
+                    <td>Seattle</td>
+                    <td>lat</td>
+                    <td>log</td>
+                    <td>dist</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <input type="button" value="Generate Table in Ascending Order" onclick="generate_table1()">
+        <input type="button" value="Generate Table in Descending Order" onclick="generate_table2()">
     </body>
 </html>
