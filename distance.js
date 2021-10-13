@@ -62,7 +62,7 @@ const osu = {
 fetch("cities.json")
     .then(response => response.json())
     .then(data => generateTableMi(data, osu))
-    .then(data => generateTableKm(data, osu))
+    // .then(data => generateTableKm(data, osu))
 
 function calculateDistance(data, osu, unit){
     // Calculates the distance in Miles
@@ -72,12 +72,10 @@ function calculateDistance(data, osu, unit){
     const osuLng = osu['lng'];
     for (let i = 0; i < data.length; i++){
         const dist = distance(osuLat, osuLng, data[i]['lat'], data[i]['lng'], unit);
-        arrayDistances.push(dist);
+        arrayDistances.push(parseFloat(dist.toFixed(4)));
     }
     return arrayDistances;
 }
-
-
 /**
  * The parameters are: lat1, lon1, lat2, lon2, unit (M:miles, K:km, N:nautical miles)
  * I will assume point 1 is Corvallis and point 2 is the other city that I will be using to calculate the distance from.
@@ -97,7 +95,7 @@ function generateTableMi(data, osu){
     // Make the table body
     var tblBody = document.createElement("tbody");
     // Make sure the table has the descriptions.
-    const titles = ["Names:", "Latitude:", "Longitude", "Distance (Mil)"];
+    const titles = ["Names:", "Latitude:", "Longitude:", "Distance (Mi)"];
     var row = document.createElement("tr");
     for (let k = 0; k < 4; k++){
         var th = document.createElement("th");
@@ -126,7 +124,8 @@ function generateTableMi(data, osu){
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             } else if (j === 3){
-                var cellText = document.createTextNode(`${arrDistances[i]}`);
+                // alert(typeof(`${arrDistances[i]}`));
+                var cellText = document.createTextNode(arrDistances[i].toString());
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }
@@ -140,10 +139,9 @@ function generateTableMi(data, osu){
     body.appendChild(tbl);
     return data;
 }
-
-
 function generateTableKm(data, osu){
     // Makes the table using DOM
+    // Calculates the distances using the calculateDistance function
     var arrDistances = calculateDistance(data, osu, "K");
     // Grabs the body tag from the html page to add a table to it
     var body = document.getElementsByTagName("body")[0];
@@ -152,7 +150,7 @@ function generateTableKm(data, osu){
     tbl.setAttribute('class', 'tblKm');
     // Make the table body
     var tblBody = document.createElement("tbody");
-    // Make sure the table has the descriptions.
+    // Make sure the table has the descriptions; fill them with the for loop.
     const titles = ["Names:", "Latitude:", "Longitude", "Distance (Km)"];
     var row = document.createElement("tr");
     for (let k = 0; k < 4; k++){
@@ -163,8 +161,8 @@ function generateTableKm(data, osu){
         tblBody.appendChild(row);
         tbl.appendChild(tblBody);
     }
+    // Fills in the nxm table
     for (let i = 0; i < data.length; i++){
-        // make a table row
         var row = document.createElement("tr");
         for (let j = 0; j < titles.length; j++){
             // make a table data and its text content and add it to the table row.
@@ -177,31 +175,85 @@ function generateTableKm(data, osu){
                 var cellText = document.createTextNode(data[i]['lat']);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
-
             } else if (j === 2){
+             
                 var cellText = document.createTextNode(data[i]['lng']);
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             } else if (j === 3){
-                var cellText = document.createTextNode(`${arrDistances[i]}`);
+                var cellText = document.createTextNode(arrDistances[i].toString());
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }
         }     
         // Add the row to the end of the table body
         tblBody.appendChild(row);
-
     }
     // Put the table body into the table
     tbl.appendChild(tblBody);
     body.appendChild(tbl);
 }
+function valFunctionMsg(value){
+    // Changes the value of the input button
+    var btnInput = document.getElementById("sortButton");
+    btnInput.setAttribute("value", value);
+}
 
-function sortMilesTable(){
-    var body = document.getElementsByTagName('body')[0];
-    var tbl = document.getElementsByTagName('table')[0];
-    const r = tbl.rows;
-    for (let i = 1; i < r.length - 1; i++){
-        console.log(r[i]);
+
+function sortTable(byDistance, tableNumber){
+    /**
+     * JS doesn't have any built in functions to sort rows.
+     * The following code was adapted and reworked from a source that I provide a link to.
+     * When working on software development, I have to collaborate with other people and knowing how to read and write to other 
+     * collegue's code is an essential skill of software engineering.
+     * References: https://www.geeksforgeeks.org/how-to-sort-rows-in-a-table-using-javascript/
+     */
+    var tbl = document.getElementsByTagName('table')[tableNumber];
+    var rows, i, x, y, count = 0;
+    var switching = true;
+    // Order is set as ascending by default
+    var direction = "asc"
+    // Loop will run until the switching is done
+    while (switching){
+        switching = false;
+        var rows = tbl.rows;
+        // Loop to go through all the rows
+        for (i = 1; i < (rows.length - 1); i++){
+            var Switch = false;
+            // Fetching two elements that need to be compared.
+            x = rows[i].getElementsByTagName("td")[byDistance];
+            y = rows[i+1].getElementsByTagName("td")[byDistance];
+            // Check the direction of the sorting
+            if (direction == "asc"){
+                // Check if rows need to be switched
+                if (Math.round(parseFloat(x.innerHTML)*100)/100 > Math.round(parseFloat(y.innerHTML)*100)/100){
+                    Switch = true;
+                    break;
+                }
+            }else if (direction == "desc"){
+                if (Math.round(parseFloat(x.innerHTML)*100)/100 < Math.round(parseFloat(y.innerHTML)*100)/100){
+                    Switch = true;
+                    break;
+                }
+            }
+        }
+        if (Switch){
+            // switches the rows and lets the program know the switching has been done.
+            rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
+            switching = true;
+            count++;
+        }else {
+            // Run while loop again for descending order
+            if (count == 0 && direction == "asc"){
+                direction = "desc";
+                switching = true;
+            }
+        }
+    }
+    // Switching the value of the Button that sorts the table.
+    if (direction == "desc"){
+        valFunctionMsg("Descending");
+    }else{
+        valFunctionMsg("Ascending");
     }
 }

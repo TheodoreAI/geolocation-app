@@ -8,32 +8,36 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="style.css">
-              
         <script src="./distance.js"></script>
- 
     </head>
     <body>
-        <h1 class="title">Geolocation Module:</h1>
+        <div class="divSortButton">
+            <h1 class="title">Geolocation App:</h1>
+        </div>
         <br>
-
-        <!-- <table class="tblClass">
-            <tbody>
-                <tr>
-                    <th>Name:</th>
-                    <th>Latitude:</th>
-                    <th>Longitude:</th>
-                    <th>Distance:</th>
-                </tr>
-                <tr>
-                    <td>Seattle</td>
-                    <td>lat</td>
-                    <td>log</td>
-                    <td>dist</td>
-                </tr>
-            </tbody>
-        </table> -->
-
-        <input type="button" value="Sort first Table" onclick="sortMilesTable()">
+        <div class="divSortButton">
+            <h4>Exercise B: Custom Button:</h4>
+        </div>
+        <div class="divWrapper">
+            <a href="" style="text-decoration: none;">
+                <div class="customBtn">
+                    <div class="smallDot">
+                    </div>
+                    BUTTON
+                    <div class="smallDot">
+                    </div>
+                </div>
+            </a>
+        </div>
+        <br>
         <!-- <input type="button" value="Generate Table in Descending Order" onclick="generate_table2()"> -->
+        <div class="divSortButton">
+            <h4>Exercise A: Geolocation Report:</h4>
+        </div>
+        <input type="button" class="sortButton" value="Descending" onclick="sortTable(3,0)">
+       
     </body>
+    
 </html>
+
+<!-- Resources: https://unicode-table.com/en/25CB/ -->

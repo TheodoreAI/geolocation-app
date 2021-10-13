@@ -57,6 +57,14 @@ Below are the steps required to submit the sample project. GitHub Pages will hos
 
 
 1. Building the interface with JS, HTML, and CSS
+    i. Build the table
+    ii. Make sure it can be sorted (ascending, descending)
+    iii. Build the button to specification
 2. Make sure the interface works according to the requirements. 
+    i. Make sure to fetch the JSON and that I can sort. 
+    ii. Only use CSS, HTML, and JS
 3. Make sure you can read the JSON files.
+    i. Fetch() will help to get those JSON files
 4. Deploy on GitHub pages.
+    i. Deploy to a / address since I already have my first website at just theodoreai
+    ii. Locally test with Live Server from VSCode
