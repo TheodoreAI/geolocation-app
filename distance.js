@@ -62,7 +62,6 @@ const osu = {
 fetch("cities.json")
     .then(response => response.json())
     .then(data => generateTableMi(data, osu))
-    // .then(data => generateTableKm(data, osu))
 
 function calculateDistance(data, osu, unit){
     // Calculates the distance in Miles
@@ -197,6 +196,7 @@ function valFunctionMsg(value){
     // Changes the value of the input button
     var btnInput = document.getElementById("sortButton");
     btnInput.setAttribute("value", value);
+    
 }
 
 
@@ -252,6 +252,7 @@ function sortTable(byDistance, tableNumber){
     }
     // Switching the value of the Button that sorts the table.
     if (direction == "desc"){
+      
         valFunctionMsg("Descending");
     }else{
         valFunctionMsg("Ascending");

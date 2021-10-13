@@ -29,7 +29,7 @@ tr:nth-child(odd){
     margin: 0% 45% 1%;
 
 }
-.sortButton{
+#sortButton{
     font-size: large;
     text-align: center;
     border: 20px;
