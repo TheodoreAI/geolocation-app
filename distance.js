@@ -94,7 +94,7 @@ function generateTableMi(data, osu){
     // Make the table body
     var tblBody = document.createElement("tbody");
     // Make sure the table has the descriptions.
-    const titles = ["Names:", "Latitude:", "Longitude:", "Distance (Mi)"];
+    const titles = ["Names:", "Latitude:", "Longitude:", "Distance (mi)"];
     var row = document.createElement("tr");
     for (let k = 0; k < 4; k++){
         var th = document.createElement("th");
